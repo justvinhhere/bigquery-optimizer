@@ -1,14 +1,14 @@
 {
   "name": "justvinhhere-bigquery-optimizer",
   "description": "BigQuery SQL optimization plugins by Vinh Nguyen",
+  "owner": {
+    "name": "Vinh Nguyen"
+  },
   "plugins": [
     {
       "name": "bigquery-optimizer",
       "description": "Detects 11 BigQuery SQL performance anti-patterns and helps write optimized queries.",
-      "source": {
-        "source": "github",
-        "repo": "justvinhhere/bigquery-optimizer"
-      }
+      "source": "."
     }
   ]
 }
