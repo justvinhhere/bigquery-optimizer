@@ -1,6 +1,6 @@
 # WhereOrder
 
-**Severity:** Medium
+**Severity:** Low (advisory -- BigQuery's cost-based optimizer reorders predicates independently)
 
 ## What It Detects
 `WHERE` clauses with `AND`-connected predicates that are not ordered from most selective (cheapest) to least selective (most expensive).

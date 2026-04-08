@@ -43,18 +43,19 @@ WHEN NOT MATCHED BY TARGET THEN
           TRUE, CURRENT_TIMESTAMP(), TIMESTAMP('9999-12-31'));
 
 -- Step 2: Insert new current rows for changed records
--- Best practice: identify changed records from staging vs current target,
--- not by reading back expired rows (which risks matching old history).
+-- Join staging to target where no current row exists (Step 1 just expired it).
 INSERT INTO `project.dataset.customers_scd2`
   (customer_id, name, email, is_current, valid_from, valid_to)
 SELECT s.customer_id, s.name, s.email, TRUE, CURRENT_TIMESTAMP(), TIMESTAMP('9999-12-31')
 FROM `project.dataset.staging_customers` s
-WHERE EXISTS (
+WHERE NOT EXISTS (
   SELECT 1 FROM `project.dataset.customers_scd2` t
   WHERE t.customer_id = s.customer_id
-    AND t.is_current = FALSE
-    AND t.valid_to = (SELECT MAX(t2.valid_to) FROM `project.dataset.customers_scd2` t2
-                      WHERE t2.customer_id = s.customer_id)
+    AND t.is_current = TRUE
+)
+AND EXISTS (
+  SELECT 1 FROM `project.dataset.customers_scd2` t
+  WHERE t.customer_id = s.customer_id
 );
 
 -- Delete unmatched rows in target

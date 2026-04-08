@@ -1,6 +1,6 @@
 # JoinOrder
 
-**Severity:** High
+**Severity:** Low (advisory -- BigQuery's optimizer usually handles join ordering automatically)
 
 ## What It Detects
 JOIN operations where a smaller table is on the left (first position) and a larger table is on the right. BigQuery's best practice is to place the largest table first.

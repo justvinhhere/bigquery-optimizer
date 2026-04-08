@@ -26,7 +26,7 @@ SELECT
   ST_DISTANCE(a.location, b.location) AS distance_meters
 FROM `project.dataset.stores` AS a
 CROSS JOIN `project.dataset.customers` AS b
-WHERE ST_DISTANCE(a.location, b.location) < 5000;  -- within 5km
+WHERE ST_DWITHIN(a.location, b.location, 5000);  -- within 5km, uses spatial indexing
 
 -- Containment: points within a polygon
 SELECT customer_id

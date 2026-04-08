@@ -83,8 +83,8 @@ The query optimization skill detects 11 BigQuery SQL anti-patterns:
 | 5 | `REGEXP_CONTAINS` for simple patterns | Use `LIKE` instead | Low |
 | 6 | `ROW_NUMBER()` + `WHERE rn = 1` | Use `ARRAY_AGG(... LIMIT 1)` | High |
 | 7 | Subquery inside WHERE | Extract to `DECLARE` variable or CTE | Medium |
-| 8 | WHERE predicates not ordered by selectivity | Reorder by operator cost | Medium |
-| 9 | Smaller table first in JOIN | Place largest table first | High |
+| 8 | WHERE predicates not ordered by selectivity | Reorder by operator cost (advisory) | Low |
+| 9 | Smaller table first in JOIN | Place largest table first (advisory) | Low |
 | 10 | `CREATE TEMP TABLE` without `DROP` | Add `DROP TABLE` at end of script | Low |
 | 11 | `CREATE TABLE` + `DROP TABLE` in same script | Use `CREATE TEMP TABLE` instead | Low |
 

@@ -53,13 +53,16 @@ FROM (
   FROM `project.dataset.clickstream`)
 ```
 
-### Funnel analysis
+### Funnel analysis (open funnel -- does not enforce step order)
 ```sql
 SELECT COUNTIF(step >= 1) AS views, COUNTIF(step >= 2) AS carts, COUNTIF(step >= 3) AS purchases
 FROM (
   SELECT user_id, MAX(IF(event='page_view',1,0)) + MAX(IF(event='add_to_cart',2,0))
     + MAX(IF(event='purchase',3,0)) AS step
   FROM `project.dataset.events` GROUP BY user_id)
+-- Note: this open funnel counts users who completed each action independently.
+-- Users who skip steps (e.g., purchase without add_to_cart) are still counted.
+-- For a strict sequential funnel, use event timestamps to enforce step ordering.
 ```
 
 ### Time-series bucketing
