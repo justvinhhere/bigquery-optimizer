@@ -19,7 +19,7 @@ Choosing the wrong pricing model can double your BigQuery spend. On-demand charg
 | Tier | Rate | Key Features |
 |------|------|-------------|
 | Standard | $0.04/slot-hr | Autoscaling, no commitment required |
-| Enterprise | $0.06/slot-hr | CMEK, multi-region, streaming |
+| Enterprise | $0.06/slot-hr | CMEK, VPC Service Controls, BQML |
 | Enterprise Plus | $0.10/slot-hr | 99.99% SLA, advanced DR, compliance |
 
 - Autoscaling adjusts slot count to demand (pay only for what you use).
