@@ -53,4 +53,4 @@ CLUSTER BY created_date, department, region
 - BigQuery **automatically re-clusters** in the background at no cost. No manual maintenance needed.
 - Clustering is most effective on columns used in `WHERE`, `JOIN ON`, and `GROUP BY`. Columns only in `SELECT` provide no clustering benefit.
 - For columns with very low cardinality (e.g., boolean), clustering provides minimal block-skipping. Prefer higher-cardinality columns.
-- Clustering metadata is not visible in `INFORMATION_SCHEMA` in all regions. Use `bq show` to verify.
+- Clustering column order is visible via `INFORMATION_SCHEMA.COLUMNS` (`clustering_ordinal_position` column). Use `bq show dataset.table` as a quick CLI alternative.
